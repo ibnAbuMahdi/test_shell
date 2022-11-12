@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
+#include "shell.h"
 
 /**
  * words - counts the number of words in a string delimited by needle
@@ -58,7 +60,10 @@ char **split(char *str, char *delim)
 }
 
 /**
- *
+ * has_char - checks for char c in string s
+ * @s: the string to check in
+ * @c: the char
+ * Return: 1 if c exist in s and 0 if not
  */
 
 int has_char(char *s, char c)
@@ -68,3 +73,30 @@ int has_char(char *s, char c)
 			return (1);
 	return (0);
 }
+
+/**
+ * _puts - prints a string
+ * @s: the string
+ */
+
+void _puts(char *s)
+{
+	int i = 0;
+
+	while (s[i])
+		_putchar(s[i++]);
+}
+
+/**
+ * _putchar - prints a char to the stdout
+ * @c: the char to print
+ * Return: 1 if success else -1
+ */
+
+int _putchar(char c)
+{
+	return (write(1, &c, 1));
+}
+
+
+

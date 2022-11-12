@@ -24,8 +24,11 @@ int main(void)
 
 		if (getline(&line, &n, stdin) == -1)
 			exit(1);
-	
+
 		argv = split(line, "\n");
+
+		if (builtin(argv[0]))
+			continue;
 
 		if (has_char(argv[0], '/'))
 		{

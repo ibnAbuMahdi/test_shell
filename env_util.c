@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdlib.h>
+#include "shell.h"
 
 /**
  * _getenv - gets environment variable with named name
@@ -11,7 +12,6 @@
 
 char *_getenv(const char *name)
 {
-	extern char **environ;
 	size_t i = 0;
 	int n = 0;
 
@@ -28,4 +28,21 @@ char *_getenv(const char *name)
 		i++;
 	}
 	return (NULL);
+}
+
+/**
+ *
+ */
+
+void printenv(void)
+{
+	size_t i = 0;
+
+	while (environ[i])
+	{
+		_puts(environ[i]);
+		_puts("\n");
+		i++;
+	}
+	
 }
