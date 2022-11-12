@@ -56,3 +56,15 @@ char **split(char *str, char *delim)
 	temp[i] = NULL;
 	return (temp);
 }
+
+/**
+ *
+ */
+
+int has_char(char *s, char c)
+{
+	while (*s)
+		if (*s++ == c)
+			return (1);
+	return (0);
+}
