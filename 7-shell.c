@@ -26,7 +26,6 @@ int main(void)
 			exit(1);
 
 		argv = split(line, "\n");
-
 		if (builtin(argv[0]))
 			continue;
 
@@ -59,7 +58,6 @@ int main(void)
 int exec_cmd(char *cmd, char **args)
 {
 	pid_t child = fork();
-	extern char **environ;
 
 	if (child == -1)
 	{
@@ -93,28 +91,32 @@ char *cmd_exist(char *cmd)
 {
 	char *value = _getenv("PATH");
 	struct stat st;
-	char *path;
+	int pos;
 	int i;
+	char *temp;
 
 	if (value)
 	{
-		path = strtok(value, ":");
 		while (1)
-	       	{
-			char *temp = strdup(path);
-
-			strcat(temp, "/");
-			strcat(temp, cmd);
+		{
+			pos = _strtok(value, ":");
+			
+			temp = malloc(pos + 1);
+			_strncpy(temp, value, pos + 1);
+			_strcat(temp, "/");
+			_strcat(temp, cmd);
 			i = stat(temp, &st);
 			if (i == 0)
 			{
 				return (temp);
 			}
-			if (!(path = strtok(NULL, ":")))
+			value += pos + 1;
+			if (!(pos = _strtok(value, ":")))
 			{
 				free(temp);
 				break;
 			}
+			free(temp);
 		}
 	}
 

@@ -23,5 +23,19 @@ int _putchar(char);
 
 void _puts(char *);
 
+char *_strstr(char *, char *);
+
+int _strcmp(char *, char *);
+
+int _strncmp(char *, char *, size_t);
+
+char *_strcat(char *, char *);
+
+int _strtok(char *, char *);
+
+size_t _strlen(char *);
+
+char * _strncpy(char *, char *, int);
+
 
 #endif /*SHELL_H*/

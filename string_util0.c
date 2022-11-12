@@ -18,9 +18,9 @@ int words(char *s, char *needle)
 
 	if (!s || !needle)
 		return (-1);
-	while ((temp = strstr(dup, needle)))
+	while ((temp = _strstr(dup, needle)))
 	{
-		if (strncmp(dup, needle, strlen(needle)) != 0)
+		if (_strncmp(dup, needle, _strlen(needle)) != 0)
 			wc++;
 		dup = temp + 1;
 	}
@@ -40,20 +40,25 @@ char **split(char *str, char *delim)
 {
 	char **temp;
 	char *strp, *s = str;
-	size_t i = 0;
+	size_t i = 0, dl;
+	int pos;
 
 	if (!str || !delim)
 		return (NULL);
 	temp = malloc((sizeof(char *)) * (words(str, delim) + 1));
-
+	dl = _strlen(delim);
 	if (!temp)
 		return (NULL);
 
-	while ((strp = strtok(s, delim)))
+	while ((pos = _strtok(s, delim)))
 	{
+		strp = malloc(pos + 1);
+		if (!strp)
+			return (NULL);
+		_strncpy(strp, s, pos);
 		temp[i] = strp;
 		i++;
-		s = NULL;
+		s += pos + dl;
 	}
 	temp[i] = NULL;
 	return (temp);
