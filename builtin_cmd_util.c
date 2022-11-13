@@ -40,7 +40,6 @@ int builtin(char **cmd_b)
 				break;
 			}
 			_setenv(cmd_b[1], cmd_b[2]);
-			printenv();
 			break;
 		}
 		case (4):
@@ -51,7 +50,6 @@ int builtin(char **cmd_b)
 				break;
 			}
 			_unsetenv(cmd_b[1]);
-			printenv();
 			break;
 		}
 	}
