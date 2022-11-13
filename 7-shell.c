@@ -26,7 +26,7 @@ int main(void)
 			exit(1);
 
 		argv = split(line, "\n");
-		if (builtin(argv[0]))
+		if (builtin(argv))
 			continue;
 
 		if (has_char(argv[0], '/'))
