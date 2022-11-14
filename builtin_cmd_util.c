@@ -5,25 +5,17 @@
 
 /**
  * builtin - check if cmd is a built-in
- * @cmd_b: the command
+ * @cmd: the command
  * Return: >0 if builtin else 0
  */
 
-int builtin(char **cmd_b)
+int builtin(char *cmd)
 {
-	char *cmds_b[] = {"env", "exit", "setenv", "unsetenv", NULL};
-	size_t i = 0, index = 0;
-	
-	cmd_b = split(cmd_b[0], " ");
-	while (cmds_b[i])
-	{
-		if (_strcmp(cmds_b[i], cmd_b[0]) == 0)
-		{
-			index = i + 1;
-			break;
-		}
-		i++;
-	}
+	size_t i = 0, index;
+	char **cmd_b;
+
+	cmd_b = split(cmd, " ");
+	index = cmd_index(cmd_b[0]);
 	switch (index)
 	{
 		case (1):
@@ -57,13 +49,34 @@ int builtin(char **cmd_b)
 }
 
 /**
- *
+ * cmd_index - find the index of cmd in list of builtins
+ * @cmd: the command
+ * Return: the index, starting from 1 or 0 if not exist
+ */
+
+size_t cmd_index(char *cmd)
+{
+	char *cmds_b[] = {"env", "exit", "setenv", "unsetenv", NULL};
+	size_t i = 0;
+
+	while (cmds_b[i])
+	{
+		if (_strcmp(cmds_b[i], cmd) == 0)
+			return (i + 1);
+		i++;
+	}
+	return (0);
+
+/**
+ * count - counts the number of string array elements
+ * @array: string array
+ * Return: array size
  */
 
 size_t count(char **array)
 {
 	size_t i = 0;
-	
+
 	if (!array)
 		return (0);
 	while (array[i])

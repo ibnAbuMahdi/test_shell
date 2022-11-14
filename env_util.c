@@ -15,7 +15,7 @@ char *_getenv(char *name)
 	size_t i = 0;
 	int n = 0, pos;
 	char *temp, *value;
-	
+
 	while (environ[i])
 	{
 		pos = _strtok(environ[i], "=");
@@ -41,7 +41,7 @@ char *_getenv(char *name)
 }
 
 /**
- *
+ * printenv - prints the environment
  */
 
 void printenv(void)
@@ -54,11 +54,13 @@ void printenv(void)
 		_puts("\n");
 		i++;
 	}
-	
 }
 
 /**
- *
+ * _setenv - sets an env variable
+ * @name: variable's key
+ * @value: variable's value
+ * Return: 1 on success and 0 o.w.
  */
 
 int _setenv(char *name, char *value)
@@ -92,7 +94,11 @@ int _setenv(char *name, char *value)
 }
 
 /**
- *
+ * _putenv - puts a new env variable
+ * @name: variable's key
+ * @value: variable's value
+ * @env_size: env size
+ * Return: 1 on success and 0 o.w.
  */
 
 int _putenv(char *name, char *value, size_t env_size)
@@ -115,7 +121,9 @@ int _putenv(char *name, char *value, size_t env_size)
 }
 
 /**
- *
+ * _unsetenv - unsets an env variable
+ * @name: variable's key
+ * Return: 1 on success and 0 o.w.
  */
 
 int _unsetenv(char *name)
@@ -125,6 +133,8 @@ int _unsetenv(char *name)
 	char *temp;
 	int pos;
 
+	if (!name)
+		return (0);
 	while (environ[i])
 	{
 		pos = _strtok(environ[i], "=");
@@ -146,28 +156,5 @@ int _unsetenv(char *name)
 		}
 		i++;
 	}
-	return (1);	
+	return (1);
 }
-
-/*
-int main(void)
-{
-if (ac == 2)
-	{
-		if (_unsetenv(av[1]))
-			printf("unsetenv success\n");
-	}
-	else if (ac == 3)
-	{
-		if (_setenv(av[1], av[2]))
-			printf("setenv success\n");
-	}
-	
-	return (0);
-
-	printf("%s\n", _getenv("PATH"));
-	return (0);
-}
-*/
-
-

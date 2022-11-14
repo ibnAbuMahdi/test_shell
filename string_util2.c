@@ -36,7 +36,11 @@ int _strtok(char *s, char *ndl)
 }
 
 /**
- *
+ * _strncpy - same as strncpy
+ * @dest: destination buffer
+ * @src: source buffer
+ * @n: number of chars to copy
+ * Return: address of the new dest
  */
 
 char *_strncpy(char *dest, char *src, int n)
@@ -49,3 +53,22 @@ char *_strncpy(char *dest, char *src, int n)
 		dest[i] = 0;
 	return (dest);
 }
+
+/**
+ * rem_space - removes space at the beginning of s
+ * @s: the string
+ * Return: address of the first non-space char in s
+ */
+
+char *rem_space(char *s)
+{
+	if (!s)
+		return (NULL);
+	while (*s)
+		if (*s == ' ')
+			s++;
+		else
+			return (s);
+	return (s);
+}
+

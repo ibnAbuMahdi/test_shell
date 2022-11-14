@@ -3,7 +3,10 @@
 #include <stddef.h>
 
 /**
- *
+ * _strcmp - same as strcmp
+ * @s1: first string
+ * @s2: second string
+ * Return: see return section of strcmp
  */
 
 int _strcmp(char *s1, char *s2)
@@ -25,8 +28,11 @@ int _strcmp(char *s1, char *s2)
 }
 
 /**
- *
- *
+ * _strncmp - same as strncmp
+ * @s1: first string
+ * @s2: second string
+ * @n: numbers of chars to compare
+ * Return: see return section of strncmp
  */
 
 int _strncmp(char *s1, char *s2, size_t n)
@@ -48,7 +54,10 @@ int _strncmp(char *s1, char *s2, size_t n)
 }
 
 /**
- *
+ * _strstr - same as strstr
+ * @hay: where to look
+ * @ndl: what to look for
+ * Return: the address of position where ndl was found
  */
 
 char *_strstr(char *hay, char *ndl)
@@ -84,7 +93,10 @@ char *_strstr(char *hay, char *ndl)
 }
 
 /**
- *
+ * _strcat - same as strcat
+ * @dest: destination buffer
+ * @src: source buffer
+ * Return: address of the result
  */
 
 char *_strcat(char *dest, char *src)
@@ -113,7 +125,9 @@ char *_strcat(char *dest, char *src)
 }
 
 /**
- *
+ * _strlen - finds length of string
+ * @s: the string
+ * Return: length of string s
  */
 
 size_t _strlen(char *s)
@@ -121,7 +135,7 @@ size_t _strlen(char *s)
 	if (!*s)
 		return (0);
 	else
-		return (1 + _strlen(s + 1));	
+		return (1 + _strlen(s + 1));
 }
 
 

@@ -3,7 +3,9 @@
 #include "shell.h"
 
 /**
- *
+ * _strdup - same as strdup
+ * @str: the string to duplicate
+ * Return: the address of the duplicate
  */
 
 char *_strdup(char *str)
