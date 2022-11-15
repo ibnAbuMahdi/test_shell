@@ -49,9 +49,16 @@ size_t count(char **);
 
 char *rem_space(char *);
 
+char *rem_comment(char *);
+
 void process_cmds(char *);
 
 size_t cmd_index(char *);
+
+void handle_exit(char **);
+
+int _atol(char *, char **);
+
 
 
 #endif /*SHELL_H*/

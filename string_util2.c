@@ -72,3 +72,45 @@ char *rem_space(char *s)
 	return (s);
 }
 
+/**
+ * _atol - converst string to long
+ * @s: the string
+ * @endptr: address of the first non number char
+ * Return: the int part of s
+ */
+
+int _atol(char *s, char **endptr)
+{
+	int i = 0, n = 0, d, neg = 1, st = 0;
+
+	while (s[i] > 0 && st < 2)
+	{
+		if (s[i] == '-')
+		{
+			neg *= -1;
+		}
+		else if (s[i] > 47 && s[i] < 58)
+		{
+			st = 1;
+			d = s[i] - 48;
+			if (neg < 0 && n >= 0)
+				n = neg * n * 10 + neg * d;
+			else if (neg < 0 && n < 0)
+				n = n * 10 + d;
+			else
+				n = n * 10 + d;
+		}
+		else if (st == 1)
+		{
+			if (endptr)
+				*endptr = s + i;
+			st = 2;
+		}
+		i++;
+	}
+	if (!st)
+		if (endptr)
+			*endptr = s + i;
+	return (n);
+}
+

@@ -11,7 +11,7 @@
 
 int builtin(char *cmd)
 {
-	size_t i = 0, index;
+	size_t index;
 	char **cmd_b;
 
 	cmd_b = split(cmd, " ");
@@ -22,7 +22,7 @@ int builtin(char *cmd)
 			printenv();
 			break;
 		case (2):
-			printf("yes exit\n");
+			handle_exit(cmd_b);
 			break;
 		case (3):
 		{
@@ -66,7 +66,7 @@ size_t cmd_index(char *cmd)
 		i++;
 	}
 	return (0);
-
+}
 /**
  * count - counts the number of string array elements
  * @array: string array
@@ -83,3 +83,31 @@ size_t count(char **array)
 		i++;
 	return (i);
 }
+
+/**
+ * handle_exit - handles the exit command
+ * @args: arguments
+ */
+
+void handle_exit(char **args)
+{
+	size_t c;
+	char *err = NULL;
+	int status = -1;
+
+	if (!args || _strcmp("exit", args[0]) != 0)
+		return;
+	c = count(args);
+	if (c > 2)
+		write(2, "Usage: exit [STATUS]\n", 21);
+	if (c == 1)
+		exit(0);
+	if (c == 2)
+	{
+		status = _atol(args[1], &err);
+		if (!err)
+			exit(status);
+		write(2, "Error: STATUS should be a number\n", 33);
+	}
+}
+

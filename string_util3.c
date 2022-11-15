@@ -27,3 +27,23 @@ char *_strdup(char *str)
 	return (s);
 }
 
+/**
+ * rem_comment - replaces the comment char '#' with '\n'
+ * @s: the line
+ * Return: the address of the edited string
+ */
+
+char *rem_comment(char *s)
+{
+	int i = 0;
+
+	while (s[i])
+	{
+		if (s[i] == '#')
+		{
+			s[i] = '\n';
+		}
+		i++;
+	}
+	return (s);
+}

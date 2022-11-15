@@ -22,9 +22,10 @@ int main(void)
 
 		if (getline(&line, &n, stdin) == -1)
 			exit(1);
-
+		rem_comment(line);
 		argv = split(line, "\n");
-		process_cmds(argv[0]);
+/*		argv[0] = rem_comment(argv[0]);
+*/		process_cmds(argv[0]);
 	}
 
 	return (0);
